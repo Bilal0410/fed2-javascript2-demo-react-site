@@ -50,5 +50,5 @@ export default function PostsUI({ people = [] }) {
 }
 
 PostsUI.propTypes = {
-  people: PropTypes.array.isRequired,
+  people: PropTypes.array,
 };

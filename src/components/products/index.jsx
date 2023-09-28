@@ -7,19 +7,19 @@ export default function Productlist() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://dummyjson.com/products")
-      .then((res) => res.json())
-      .then((result) => {
-        console.log("result", result);
-        setProducts(result.products);
-      })
-      .catch((error) => {
-        console.log("error2", error);
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("https://dummyjson.com/products");
+        const json = await response.json();
+        setProducts(json.products);
+      } catch (error) {
+        console.warn("error2", error);
         setError(error);
-      })
-      .finally(() => {
+      } finally {
         setIsLoading(false);
-      });
+      }
+    };
+    fetchProducts();
   }, []);
 
   if (isLoading) {
